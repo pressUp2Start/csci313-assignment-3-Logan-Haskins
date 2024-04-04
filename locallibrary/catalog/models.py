@@ -83,6 +83,12 @@ class BookInstance(models.Model):
         ('r', 'Reserved'),
     )
 
+    Language = (
+        ('en', 'English'),
+        ('sp', 'Spanish'),
+        ('pg', 'Portuguese'),
+    )
+
     status = models.CharField(
         max_length=1,
         choices=LOAN_STATUS,
@@ -90,6 +96,15 @@ class BookInstance(models.Model):
         default='m',
         help_text='Book availability',
     )
+
+    language = models.CharField(
+        max_length=2,
+        choices=Language,
+        blank=True,
+        default='en',
+        help_text='Language',
+    )
+
 
     class Meta:
         ordering = ['due_back']
@@ -115,4 +130,5 @@ class Author(models.Model):
     def __str__(self):
         """String for representing the Model object."""
         return f'{self.last_name}, {self.first_name}'
+
     
